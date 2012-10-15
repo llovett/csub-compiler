@@ -1,0 +1,20 @@
+int why;
+float because[10];
+void *zippy;
+
+int main( void ) {
+    int a[10];
+    int *b;
+    float f;
+}
+
+void function( int *a, void *b, void *c, int d[]) {
+    float z;
+    int q = 4;
+}
+
+void derpy( void ){
+    why = because;
+    funtion(why, because++, zippy, whatever);
+}
+

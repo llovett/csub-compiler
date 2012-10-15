@@ -1,0 +1,12 @@
+void *global1;
+int global2;
+float *global3;
+
+void *derpy() {
+     int a;
+     int b;
+     int c[20];
+     if ( a < b ) {
+     	c[0] = a+b;
+     }
+}

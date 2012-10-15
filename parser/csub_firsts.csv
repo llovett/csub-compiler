@@ -1,0 +1,89 @@
+,First,Follow,type,identifier,punctuation,assignop,logicalop,divmodop,postfixop,relop,controlstatement,$
+PROGRAM->DEC-LIST,type,$
+DEC-LIST -> DEC DEC-LIST*,type,$
+DEC-LIST* -> DEC DEC-LIST*,type,$
+DEC-LIST* ->,$,$
+DEC -> VAR-DEC,type,type $
+DEC -> FUN-DEC,type,type $
+VAR-DEC -> TYPE-SPEC VAR-DEC*,type,type $
+VAR-DEC* -> identifier VAR-DEC**,identifier,type $
+VAR-DEC* -> * identifier ;,*,type $
+VAR-DEC** -> ;,;,type $
+VAR-DEC** -> [ num ] ;,[,type $
+TYPE-SPEC -> type,type,identifier *
+FUN-DEC -> TYPE-SPEC FUN-DEC*,type,type $
+FUN-DEC* -> identifier ( PARAMS ) COMPOUND-STMT,identifier,type $
+FUN-DEC* -> * identifier ( PARAMS ) COMPOUND-STMT,*,type $
+PARAMS -> PARAM-LIST,type,)
+PARAMS -> void,void,)
+PARAM-LIST -> PARAM PARAM-LIST*,type,)
+"PARAM-LIST* -> , PARAM PARAM-LIST*",",",)
+PARAM-LIST* ->,),)
+PARAM -> TYPE-SPEC PARAM*,type,", )"
+PARAM* -> * identifier,*,", )"
+PARAM* -> identifier PARAM**,identifier,", )"
+PARAM** -> [ ],[,", )"
+PARAM** ->,", )",", )"
+COMPOUND-STMT -> { LOCAL-DECS STMT-LIST },{,type $
+LOCAL-DECS -> VAR-DEC LOCAL-DECS,type,( identifier number addop ! & * { while for return
+LOCAL-DECS ->,"(, identifier, number, addop, !, &, *, {, while, for, return",( identifier number addop ! & * { while for return
+STMT-LIST -> STMT STMT-LIST,"(, identifier, number, addop, !, &, *, {, while, for, return",}
+STMT-LIST ->,},}
+STMT -> NOT-IF-STMT,"(, identifier, number, addop, !, &, *, {, while, for, return","(, identifier, number, addop, !, &, *, {, while, for, return"
+STMT -> IF-STMT,"(, identifier, number, addop, !, &, *"
+NOT-IF-STMT -> EXPR-STMT,"(, identifier, number, addop, !, &, *","(, identifier, number, addop, !, &, *, {, while, for, return"
+NOT-IF-STMT -> COMPOUND-STMT,{
+NOT-IF-STMT -> WHILE-STMT,while
+NOT-IF-STMT -> FOR-STMT,for
+NOT-IF-STMT -> RETURN-STMT,return
+EXPR-STMT -> OPTIONAL-EXPR ;,"(, identifier, number, addop, !, &, *","(, identifier, number, addop, !, &, *, {, while, for, return"
+IF-STMT -> if ( EXPR ) IF-STMT*,if,"(, identifier, number, addop, !, &, *, {, while, for, return"
+IF-STMT* -> STMT,"(, identifier, number, addop, !, &, *, {, while, for, return","(, identifier, number, addop, !, &, *, {, while, for, return"
+IF-STMT* -> CLOSED-IF-STMT else STMT,if
+CLOSED-IF-STMT -> if ( EXPR ) IF-STMT*,if,else
+WHILE-STMT ->while ( EXPR ) STMT,while,"(, identifier, number, addop, !, &, *, {, while, for, return"
+FOR-STMT -> for ( OPTIONAL-EXPR ; OPTIONAL-EXPR ; OPTIONAL-EXPR ; ) STMT,for,"(, identifier, number, addop, !, &, *, {, while, for, return"
+RETURN-STMT -> return ; return EXPR ;,return,"(, identifier, number, addop, !, &, *, {, while, for, return"
+OPTIONAL-EXPR -> EXPR,"(, identifier, number, addop, !, &, *","), ;"
+OPTIONAL-EXPR ->,;
+EXPR -> OR-EXPR EXPR*,"(, identifier, number, addop, !, &, *","), ;"
+EXPR* -> assignop OR-EXPR EXPR*,assignop,"), ;"
+EXPR* ->,)
+OR-EXPR -> AND-EXPR OR-EXPR*,"(, identifier, number, addop, !, &, *",assignop
+OR-EXPR* ->  | | AND-EXPR OR-EXPR*,"(, identifier, number, addop, !, &, *",assignop
+OR-EXPR* ->,"assignop, )"
+AND-EXPR -> REL-EXPR AND-EXPR*,"(, identifier, number, addop, !, &, *","(, identifier, number, addop, !, &, *"
+AND-EXPR* -> && REL-EXPR AND-EXPR*  ,&&,"(, identifier, number, addop, !, &, *"
+AND-EXPR* ->,"assignop, ), (, identifier, number, addop, !, &, *"
+REL-EXPR -> ADD-EXPR REL-EXPR*,"(, identifier, number, addop, !, &, *","&&, (, identifier, number, addop, !, &, *"
+REL-EXPR* -> relop ADD-EXPR REl-EXPR*,relop,"&&, (, identifier, number, addop, !, &, *"
+REL-EXPR* ->
+ADD-EXPR -> TERM ADD-EXPR*,"(, identifier, number, addop, !, &, *","relop, &&, (, identifier, number, addop, !, &, *"
+ADD-EXPR* -> addop TERM ADD-EXPR*,addop,"relop, &&, (, identifier, number, addop, !, &, *"
+ADD-EXPR* ->,"relop, (, identifier, number, addop, !, &, *"
+TERM -> UNARY-EXPR TERM*,"(, identifier, number, addop, !, &, *","addop, relop, &&, (, identifier, number, addop, !, &, *"
+TERM* -> MULOP UNARY-EXPR TERM*,"*, divmodop","addop, relop, &&, (, identifier, number, addop, !, &, *"
+TERM* ->,"addop, relop"
+MULOP -> *,*,"(, identifier, number, addop, !, &, *"
+MULOP -> divmodop,divmodop
+UNARY-EXPR -> POSTFIX-EXPR,"(, identifier, number","*, divmodop, addop, relop"
+UNARY-EXPR -> UNARYOP UNARY-EXPR,"addop, !, &, *"
+UNARYOP -> addop,addop,"(, identifier, number, addop, !, &, *"
+UNARYOP -> !,!
+UNARYOP -> &,&
+UNARYOP -> *,*
+POSTFIX-EXPR -> PRIMARY-EXPR POSTFIX-EXPR*,"(, identifier, number","*, divmodop, addop, relop"
+POSTFIX-EXPR* -> [ EXPR ],[,"*, divmodop, addop, relop"
+POSTFIX-EXPR* -> postfixop,postfixop
+PRIMARY-EXPR -> ( EXPR ),(,"[, (, postfixop"
+PRIMARY-EXPR -> identifier,identifier
+PRIMARY-EXPR -> CALL,identifier
+PRIMARY-EXPR -> number,number
+CALL -> identifier ( ARGS ),identifier,"[, (, postfixop"
+ARGS -> ARG-LIST,"(, identifier, number, addop, !, &, *",)
+ARGS ->,"EPSILON, "
+ARG-LIST -> EXPR ARG-LIST*,"(, identifier, number, addop, !, &, *",)
+"ARG-LIST* -> , EXPR ARG-LIST*",",",)
+ARG-LIST* ->,"EPSILON, "
+
+Lexer Tokens

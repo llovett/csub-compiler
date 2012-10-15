@@ -1,0 +1,32 @@
+				First	    Follow	assignop	controlstatement	id	muldivop	num	    plusmin	postfixop	relop	    type	punc
+PROGRAM  -> DEC-LIST
+DEC-LIST -> DEC DEC-LIST* 
+DEC-LIST* -> DEC DEC-LIST* | e
+DEC -> VAR-DEC
+DEC -> FUN-DEC
+VAR-DEC -> TYPE-SPEC VAR-DEC*
+VAR-DEC* -> id VAR-DEC**
+VAR-DEC* -> * id ;
+VAR-DEC** -> ;
+VAR-DEC** -> [ num ] ;
+
+
+
+
+
+
+     * VALID TOKEN TYPES:
+     *
+     * assignop -> {=, -=, +=, *=, /=, %=}
+     * comment 
+     * controlstatement -> {if, else, while, for, return}
+     * indentifier -> [a-xA-Z_0-9]
+     * logicalop -> {||, &&}
+     * multiplicationordereferenceordivisionormodulusop -> {/, %}
+     * number ->
+     * plusorminus -> {+, -}
+     * postfixop -> {++, --}
+     * relop -> {<=, >=, ==, !=, >, <}
+     * type -> {int, float, void}
+     * punctuation -> { []!&{};,* }
+

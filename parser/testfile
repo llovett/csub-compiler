@@ -1,0 +1,78 @@
+/**
+ * testfile3
+ *
+ * A larger test for our
+ * CSUB parser.
+ *
+ * This comment should NOT
+ * crash the parser.
+ * */
+
+int main() {
+    /**
+     * variable declarations
+     * */
+    int a;
+    void *c;
+    /** array declaration **/
+    int array[50];
+
+    /**
+     * loops
+     * */
+    while ( 1 ) {
+	inifinity();
+    }
+    
+    a = 1;
+    b = 20;
+    for ( ; a<50 && b > 0; ) {
+	/**
+	 * test array
+	 * assignment
+	 * */
+	array[ a-1 ] = b;
+	a++;
+	b -= 3;
+    }
+    
+    /**
+     * The dangling if-else
+     * issue tested here.
+     * */
+    if ( 4 < 5 )
+	if ( 3 > 6 )
+	    gotoschool();
+	else
+	    flipthefish();
+    else if ( 10 == 10 )
+	rollthedice();
+    else
+	frythebaby();
+
+    pass_by_ref( c );
+}
+
+/**
+ * pass_by_ref
+ *
+ * Test parsing a function taking a pointer
+ * as a parameter and returning a pointer.
+ * */
+void *pass_by_ref(void *datum, void lval) {
+    *datum = &lval;
+}
+
+/**
+ * array_count
+ *
+ * Test parsing a function taking an array
+ * as a parameter.
+ * */
+int array_count( int arr[] ) {
+    int i;
+    i = 0;
+    while ( &arr[i] )
+	i++;
+    return i;
+}

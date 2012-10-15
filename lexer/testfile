@@ -1,0 +1,64 @@
+int getint();
+void make_diamond(int height);
+int main(){
+	
+	make_diamond(getint());
+}
+
+void make_diamond(int height){
+	int i;
+	int numstars=1;
+	
+	for(i=1; i<=height; i++){
+	    i = i % 1000;
+			
+		
+			int j;
+			for(j=0; j<(height-i); j++){
+				
+			}
+		
+			for(j=0; j<numstars; j++){
+				
+			}
+			numstars=numstars+2;
+		
+			for(j=0; j<(height-i); j++){
+				
+			}
+			
+		}
+
+	i = -0xFFFF;
+	
+	numstars=numstars-2;
+	for(i=height-1; i>=0; i--){	
+			int j;
+			for(j=0; j<height-i; j++){
+				
+			}
+			numstars=numstars-2;	
+			for(j=0; j<numstars; j++){
+				
+			}
+				
+			for(j=0; j<height-i; j++){
+				
+			}
+		
+			
+		}
+	}
+
+int getint(){
+	
+	int c;	
+	while(EOF != ( c = getchar())){
+	if(c>=49 || c<=57){
+		return c-48;
+		}
+	}
+	return -1;
+	
+}
+

@@ -1,0 +1,23 @@
+4000		/* int */
+-5000000	/* big negative int */
+0x234fed	/* positive hex */
+-0x324134	/* negative hex */
+1.234		/* simple float */
+-234.54		/* simple negative float */
+234e4		/* float with exponent */
+654e-9		/* float w/ neg exp */
+-23e12		/* neg float w/ exp */
+-345e-12	/* neg float w/ neg exp */
+12.33e4		/* float with exp and dec. */
+234.23e-7	/* float with exp and neg dec. */
+
+/***************************************/
+/* the following should all be invalid */
+/***************************************/
+
+2e67		/* too big */
+2e1000000		/* too precise */
+-1e1000		/* too small */
+34e9992d	/* wtf? */
+0xfff.0		/* wtf? */
+
